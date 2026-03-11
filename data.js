@@ -1,14 +1,5 @@
 const codeData = [
   {
-    "folderName": "graph_traversal",
-    "files": [
-      {
-        "fileName": "다익스트라.py",
-        "content": "import heapq\n\nV, E = map(int, input().split())\n\ngraph = [[] for _ in range(V+1)]\n\nfor _ in range(E):\n    a, b, cost = map(int, input().split())\n    graph[a].append((cost, b))\n    graph[b].append((cost, a))\n\nvisited = [False] * (V+1)\n\npq = []\nheapq.heappush(pq, (0, 1))\n\nresult = 0\n\nwhile pq:\n    cost, node = heapq.heappop(pq)\n    \n    if visited[node]:\n        continue\n    \n    visited[node] = True\n    result += cost\n    \n    for next_cost, next_node in graph[node]:\n        if not visited[next_node]:\n            heapq.heappush(pq, (next_cost, next_node))\n\nprint(result)"
-      }
-    ]
-  },
-  {
     "folderName": "그래프_탐색",
     "files": [
       {
@@ -26,6 +17,10 @@ const codeData = [
       {
         "fileName": "격자탐색.py",
         "content": "'''\n격자 그래프 탐색 (Grid Traversal / Flood Fill)\n2차원 배열(격자)에서 4방향(상, 하, 좌, 우) 또는 8방향 벡터를 이용하여 인접한 칸을 탐색하는 알고리즘.\n미로 찾기, 영역 넓이 구하기, 섬의 개수 세기, 토마토 익히기 등의 정올(Olympiad) 빈출 유형에 주로 결합됩니다.\n\n[입력 예시]\n4 5\n10111\n10101\n10101\n11101\n\n[출력 예시]\n15\n'''\nimport sys\nfrom collections import deque\n\nr, c = map(int, sys.stdin.readline().split())\ngrid = [list(map(int, sys.stdin.readline().split())) for _ in range(r)]\nvisited = [[False] * c for _ in range(r)]\n\ndr = [-1, 1, 0, 0]\ndc = [0, 0, -1, 1]\n\ndef process_bfs(start_r, start_c):\n    queue = deque()\n    queue.append((start_r, start_c))\n    visited[start_r][start_c] = True\n    area_count = 1\n    \n    while queue:\n        curr_r, curr_c = queue.popleft()\n        \n        for i in range(4):\n            nr = curr_r + dr[i]\n            nc = curr_c + dc[i]\n            \n            if 0 <= nr < r and 0 <= nc < c:\n                if not visited[nr][nc] and grid[nr][nc] == 0:\n                    visited[nr][nc] = True\n                    queue.append((nr, nc))\n                    area_count += 1\n                    \n    return area_count\n\ntotal_areas = 0\nfor i in range(r):\n    for j in range(c):\n        if not visited[i][j] and grid[i][j] == 0:\n            area_size = process_bfs(i, j)\n            total_areas += 1\n\nprint(total_areas)\n"
+      },
+      {
+        "fileName": "다익스트라.py",
+        "content": "import heapq\n\nV, E = map(int, input().split())\n\ngraph = [[] for _ in range(V+1)]\n\nfor _ in range(E):\n    a, b, cost = map(int, input().split())\n    graph[a].append((cost, b))\n    graph[b].append((cost, a))\n\nvisited = [False] * (V+1)\n\npq = []\nheapq.heappush(pq, (0, 1))\n\nresult = 0\n\nwhile pq:\n    cost, node = heapq.heappop(pq)\n    \n    if visited[node]:\n        continue\n    \n    visited[node] = True\n    result += cost\n    \n    for next_cost, next_node in graph[node]:\n        if not visited[next_node]:\n            heapq.heappush(pq, (next_cost, next_node))\n\nprint(result)"
       },
       {
         "fileName": "벨만포드.py",
