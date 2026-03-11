@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -444,8 +444,8 @@
             };
 
             // Initialize Theme
-            let isDark = true;
-            themeIcon.innerHTML = icons.sun; // Show sun to switch to light
+            let isDark = false;
+            themeIcon.innerHTML = icons.moon; // Show moon to switch to dark
 
             themeToggleBtn.onclick = () => {
                 isDark = !isDark;
